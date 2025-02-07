@@ -47,6 +47,10 @@
   transition: color 0.3s;
 }
 
+.header__nav-link.active{
+  color: #f4a261;
+}
+
 .header__nav-link:hover {
   color: #f4a261;
 }
