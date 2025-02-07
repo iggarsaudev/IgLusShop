@@ -1,0 +1,13 @@
+.home-section{
+    text-align:center;
+    margin:5rem;
+}
+.home-title{
+    font-size: large;
+    font-weight: bold;
+}
+
+/*Carousel*/
+.carousel-item-image{
+height:25rem;
+}
