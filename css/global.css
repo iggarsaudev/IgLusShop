@@ -47,8 +47,16 @@
   transition: color 0.3s;
 }
 
+.header__nav-link.active{
+  color: #f4a261;
+}
+
 .header__nav-link:hover {
   color: #f4a261;
+}
+
+.header__nav-link:focus {
+  color: #f5994d;
 }
 /* End Nav */
 
@@ -139,6 +147,10 @@
 
 .footer__link:hover {
   color: #f4a261;
+}
+
+.footer__link:focus {
+  color: #f5994d;
 }
 
 .footer__info {
