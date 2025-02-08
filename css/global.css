@@ -18,6 +18,14 @@
 }
 /* End Header */
 
+/*Colors*/
+.bgc--black{
+  background-color: #222;
+}
+
+.color-primary{
+  color: #f4a261;
+}
 /* Logo */
 .header__logo {
   font-size: 1.5em;

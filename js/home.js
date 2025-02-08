@@ -65,7 +65,6 @@ async function createCarouselCategory() {
             childCarousel = `<div class="carousel-item">
             <img src="${categoryImg}" class="carousel-item-image" alt="${categoryName}">
             <h3>${categoryName}</h3>
-
             </div>`
         }
         
