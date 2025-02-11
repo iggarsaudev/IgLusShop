@@ -1,12 +1,12 @@
 /* products.html */
 import { CATEGORIES } from './data.js'
-import { updateCart, updateCartCount } from './cart.js'
+import { updateCart, updateCartCount, loadCart } from './cart.js'
 
 const divSelectCategory = document.getElementById("selectCategory")
 const divProductsViewer = document.getElementById("productsViewer")
 
+let cart = loadCart() // Cargamos el carrito si lo hubiera
 fillSelectCategory(CATEGORIES) // Rellenamos el select de las categorías
-// getAllProducts() // Mostramos todos los productos de las categorías seleccionadas en data.js
 getRandomProducts() // Mostramos un carrusel de productos aleatorios de las categorías seleccionadas en data.js
 
 /* Número aleatorio para mostrar dicha cantidad de productos, indicamos 45 porque son los productos que se obtienen con nuestras categorías */
@@ -18,6 +18,7 @@ function getRandomNumberProducts() {
 function getRandomProducts() {
     let numProducts = getRandomNumberProducts()
     // console.log(numProducts)
+
     fetch('https://dummyjson.com/products?limit=0')
         .then(res => res.json())
         .then(datos => {
@@ -25,10 +26,14 @@ function getRandomProducts() {
             let filteredProducts = datos.products.filter(product =>
                 CATEGORIES.some(category => category.slug === product.category)
             )
+
+            // Mezclamos los productos aleatoriamente
+            filteredProducts = filteredProducts.sort(() => Math.random() - 0.5)
+
             // Seleccionamos el número aleatorio de productos
-            filteredProducts = filteredProducts.slice(0, numProducts)
-            // console.log(filteredProducts)
-            showRandomProducts(filteredProducts)
+            let selectedProducts = filteredProducts.slice(0, numProducts)
+
+            showRandomProducts(selectedProducts)
         })
         .catch(error => console.error("Error al obtener los productos:", error))
 }
@@ -39,11 +44,11 @@ function showRandomProducts(datos) {
         <div class="cardCarouselProducts">
             <div id="product-carousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
-    `;
+    `
 
     datos.forEach((product, index) => {
         // Añadir la clase 'active' al primer elemento para que se muestre al cargar
-        const activeClass = index === 0 ? 'active' : '';
+        const activeClass = index === 0 ? 'active' : ''
         salida += `
                 <div class="carousel-item ${activeClass}">
                     <img src="${product.images[0]}" class="d-block w-100 carousel__img" alt="${product.title}">
@@ -55,8 +60,8 @@ function showRandomProducts(datos) {
                         <p class="carousel__description">${product.description}</p>
                     </div>
                 </div>
-        `;
-    });
+        `
+    })
 
     salida += `
                 </div>
@@ -68,27 +73,10 @@ function showRandomProducts(datos) {
                 </button>
             </div>
         </card>
-    `;
+    `
 
-    divProductsViewer.innerHTML = salida;
+    divProductsViewer.innerHTML = salida
 }
-
-/* Mostramos, aleatoriamente, productos al cargar la página */
-function getAllProducts() {
-    fetch('https://dummyjson.com/products?limit=0')
-        .then(res => res.json())
-        .then(datos => {
-            // Filtrar productos por categoría
-            let filteredProducts = datos.products.filter(product =>
-                CATEGORIES.some(category => category.slug === product.category)
-            )
-            // console.log(filteredProducts)
-            fillProductsViewer(filteredProducts)
-            addListenerProducts(filteredProducts)
-        })
-        .catch(error => console.error("Error al obtener los productos:", error))
-}
-/* End Mostramos todos los productos de primeras */
 
 function fillSelectCategory(datos) {
     // Creamos el elemento select
@@ -197,7 +185,7 @@ function addListenerProducts(datos) {
     })
 }
 
-let cart = [] // Constante donde almacenar los datos del carrito
+// let cart = JSON.parse(localStorage.getItem("cart")) || [] // Si hay un carrito en localStorage se carga dicho carrito, si no se inicializa vacío
 
 function handleButtonClick(datos, productId, action) {
     // console.log(datos, productId, action)
