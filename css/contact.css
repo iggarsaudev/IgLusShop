@@ -1,0 +1,132 @@
+/* Form */
+.form {
+  margin: 1.2rem auto;
+  width: 80%;
+  max-width: 30rem;
+  padding: 1.2rem;
+  background: #f8f9fa;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form__title {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.form__group {
+  margin-bottom: 1rem;
+}
+
+.form__label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+.form__input,
+.form__textarea {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 0.2rem;
+  font-size: 1rem;
+}
+
+.form__textarea {
+  resize: none;
+  height: 7.5rem;
+}
+
+.form__button {
+  display: block;
+  width: 100%;
+  padding: 0.7rem;
+  margin-top: 0.6rem;
+  background-color: #f8b28b;
+  color: black;
+  border: none;
+  border-radius: 0.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.form__button:hover {
+  background-color: #f4a261;
+}
+
+.form__button:focus {
+  background-color: #f4a261;
+}
+
+.form__error {
+  background-color: #f8d7da;
+  color: #721c24;
+  font-size: 0.9rem;
+  margin-top: 0.3rem;
+  padding: 0.5rem 0.7rem;
+  border-left: 4px solid #dc3545;
+  border-radius: 0.3rem;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.form__message {
+  background-color: #d4edda;
+  color: #155724;
+  font-size: 0.9rem;
+  margin-top: 0.3rem;
+  padding: 0.5rem 0.7rem;
+  border-left: 4px solid #28a745;
+  border-radius: 0.3rem;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.hidden {
+  display: none;
+}
+/* End Form */
+
+/* Socials */
+.social {
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.social__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  display: block;
+}
+
+.social__item {
+  display: inline-block;
+  margin: 0 0.6rem;
+}
+
+.social__link {
+  display: inline-block;
+  text-decoration: none;
+  color: #f8b28b;
+  transition: color 0.3s ease-in-out;
+}
+
+.social__link:hover {
+  color: #f4a261;
+}
+
+.social__link:focus {
+  color: #f4a261;
+}
+
+.social__icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+/* End Socials */

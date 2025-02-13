@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "noEmitOnError": false,
+        "declaration": true,
+        "declarationDir": "./dist/types",
+        "strict": true,
+        "noImplicitAny": true,
+        "outDir": "./js",
+        "removeComments": true
+    },
+    "include": ["./ts/*"]
+}
