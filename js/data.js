@@ -1,12 +1,12 @@
 /* Obtenemos la lista de categorías que vamos a utilizar en el proyecto */
 export const CATEGORIES = [
-    { slug: "mens-shoes", name: "Men's Shoes" },
-    { slug: "mens-shirts", name: "Men's Shirts" },
-    { slug: "mens-watches", name: "Men's Watches" },
-    { slug: "fragrances", name: "Fragrances" },
-    { slug: "womens-bags", name: "Women's Bags" },
-    { slug: "womens-dresses", name: "Women's Dresses" },
-    { slug: "womens-jewellery", name: "Women's Jewellery" },
-    { slug: "womens-shoes", name: "Women's Shoes" },
-    { slug: "laptops", name: "Laptops" }
+    {slug: 'mens-shirts', name: 'Mens Shirts', url: 'https://dummyjson.com/products/category/mens-shirts'},
+    {slug: 'mens-shoes', name: 'Mens Shoes', url: 'https://dummyjson.com/products/category/mens-shoes'},
+    {slug: 'mens-watches', name: 'Mens Watches', url: 'https://dummyjson.com/products/category/mens-watches'},
+    {slug: 'fragrances', name: 'Fragrances', url: 'https://dummyjson.com/products/category/fragrances'},
+    {slug: 'womens-bags', name: 'Womens Bags', url: 'https://dummyjson.com/products/category/womens-bags'},
+    {slug: 'womens-dresses', name: 'Womens Dresses', url: 'https://dummyjson.com/products/category/womens-dresses'},
+    {slug: 'womens-jewellery', name: 'Womens Jewellery', url: 'https://dummyjson.com/products/category/womens-jewellery'},
+    {slug: 'womens-shoes', name: 'Womens Shoes', url: 'https://dummyjson.com/products/category/womens-shoes'},
+    {slug: 'laptops', name: 'Laptops', url: 'https://dummyjson.com/products/category/laptops'}
 ]

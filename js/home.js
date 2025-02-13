@@ -1,3 +1,5 @@
+import { CATEGORIES } from './data.js'
+
 function getRandomInt(min, max) {
     const minCeiled = Math.ceil(min);
     const maxFloored = Math.floor(max);
@@ -5,12 +7,12 @@ function getRandomInt(min, max) {
 }
 
 function createCarouselImages() {
-    let categories = ['mens-shirts','mens-shoes','mens-watches','womens-bags','womens-dresses','womens-jewellery','womens-shoes','womens-watches']
     let carouselImages = document.getElementById('carouselImages-products');
     carouselImages.innerHTML = ""
+    let childCarousel
     for (let i=0;i<5;i++) {
-        let category_index = getRandomInt(0, 7)
-        let category = categories[category_index]
+        let category_index = getRandomInt(0, CATEGORIES.length)
+        let category = CATEGORIES[category_index].slug
         fetch(`https://dummyjson.com/products/category/${category}`)
         .then(res => res.json())
         .then(res => {
@@ -39,17 +41,12 @@ async function getImageCategory(url) {
     
     return img
 }
-async function getCategories() {
-    let data = await fetch(`https://dummyjson.com/products/categories/`)
-    .then(res => res.json())
-    .then(res => {return res})
-    return data
-}
+
 async function createCarouselCategory() {
     let carouselImages = document.getElementById('carouselImages-categories');
     carouselImages.innerHTML = ""
-    res = await getCategories()
-    
+    let childCarousel
+    let res = CATEGORIES
     for (let i=0;i<res.length;i++) {
         let category=res[i]
         let categoryName = category.name
@@ -71,6 +68,7 @@ async function createCarouselCategory() {
         carouselImages.innerHTML+=childCarousel
     }
 }
+
 
 window.addEventListener("DOMContentLoaded", createCarouselImages);
 window.addEventListener("DOMContentLoaded", createCarouselCategory);
