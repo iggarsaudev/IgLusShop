@@ -1,5 +1,40 @@
+let cart = loadCart() // Cargamos el carrito si lo hubiera
+
+let productsList = document.getElementById("productsList")
+let priceTotal = document.getElementById("priceTotal")
+
+// Solo ejecutamos showProductList si estamos en la página del carrito
+if (productsList) {
+    showProductList(cart);
+}
+
+export function showProductList(cart) {
+    let salida = ""
+
+    cart.forEach(product => {
+        salida += `
+            <div>
+                <img src="${product.images[0]}" class="list_img">
+                <p>${product.title}</p>
+            </div>
+        `
+    });
+
+    productsList.innerHTML = salida
+}
+
 export function updateCartCount(cart) {
-    console.log(cart)
+    const cartCount = document.getElementById("cartCount")
+
+    // Sumar todas las cantidades de los productos en el carrito
+    const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0)
+
+    if (totalQuantity > 0) {
+        cartCount.textContent = totalQuantity // Mostrar la cantidad total
+        cartCount.classList.remove("hidden") // Mostrar el contador si hay productos
+    } else {
+        cartCount.classList.add("hidden") // Ocultarlo si está vacío
+    }
 }
 
 export function updateCart(cart) {

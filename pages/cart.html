@@ -18,6 +18,7 @@
     />
     <!-- End Bootstrap -->
     <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/cart.css" />
     <title>IgLu's Shop</title>
   </head>
 
@@ -86,7 +87,10 @@
     </header>
 
     <main>
-      <p>CART.HTML</p>
+      <section id="cartContainer" class="cart__container">
+        <div id="productsList" class="productsList"></div>
+        <div id="priceTotal" class="priceTotal"></div>
+      </section>
     </main>
 
     <footer class="footer">
@@ -115,6 +119,6 @@
     <!-- Controla el menú en los móviles -->
     <script src="../js/toogler.js"></script>
     <!-- Controla la gestión del carrito, hay que añadir type="module" para poderlo importar -->
-    <!-- <script type="module" src="js/cart.js"></script> -->
+    <script type="module" src="../js/cart.js"></script>
   </body>
 </html>
