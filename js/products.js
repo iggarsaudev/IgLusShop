@@ -106,11 +106,8 @@ function fillSelectCategory(datos) {
     divSelectCategory.appendChild(selectCategory)
 
     // Agregamos los eventos seleccionando todos los elementos con la clase selectCategory__item
-    document.querySelectorAll(".selectCategory__item").forEach(item => {
-        item.addEventListener("click", function (event) {
-            event.preventDefault()
-            handleCategoryViewer(this.value)
-        })
+    selectCategory.addEventListener("change", function () {
+        handleCategoryViewer(this.value)
     })
 }
 
