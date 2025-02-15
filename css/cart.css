@@ -131,7 +131,7 @@
 
 .cart__total-price {
   font-size: 1.5rem;
-  font-weight: bold;  
+  font-weight: bold;
 }
 
 .cart__total-divider {
@@ -168,6 +168,29 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 /* End Total */
+
+/* Messages */
+.hidden {
+  display: none;
+}
+
+.messageCart {
+  font-size: 4rem;
+  text-align: center;
+  font-weight: bold;
+  margin: 4rem;
+}
+
+.purchaseMade {
+  background-color: #d4edda;
+  color: #155724;
+  border-left: 10px solid #28a745;
+  padding: 2rem;
+  border-radius: 0.3rem;
+  display: inline-block;
+  max-width: 100%;
+}
+/* End Messages */
 
 /* Responsive */
 @media (max-width: 768px) {

@@ -182,8 +182,6 @@ function addListenerProducts(datos) {
     })
 }
 
-// let cart = JSON.parse(localStorage.getItem("cart")) || [] // Si hay un carrito en localStorage se carga dicho carrito, si no se inicializa vacío
-
 function handleButtonClick(datos, productId, action) {
     // console.log(datos, productId, action)
     let selectedProduct = datos.find(product => product.id === productId)

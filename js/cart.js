@@ -3,15 +3,24 @@ let cart = loadCart() // Cargamos el carrito si lo hubiera
 let cartList = document.getElementById("cartList")
 let cartTotal = document.getElementById("cartTotal")
 
+let messageCart = document.getElementById("messageCart")
+
 // Solo ejecutamos showProductList si estamos en la página del carrito
 if (cartList) {
     showProductList(cart)
     addListenerProducts(cart)
-    showTotalCart(cart)
+
+    // Solo mostrar el total si el carrito tiene productos
+    if (cart.length > 0) {
+        showTotalCart(cart)
+    }
 }
 
 function showProductList(cart) {
-    let salida = "";
+    if (cart.length <= 0) {
+        messageCart.classList.remove("hidden")
+    }
+    let salida = ""
 
     cart.forEach(product => {
         salida += `
@@ -34,10 +43,10 @@ function showProductList(cart) {
                     </button>
                 </div>
             </div>
-        `;
-    });
+        `
+    })
 
-    cartList.innerHTML = salida;
+    cartList.innerHTML = salida
 }
 
 function addListenerProducts(datos) {
@@ -52,7 +61,7 @@ function addListenerProducts(datos) {
             // Listener para añadir producto
             handleButtonClick(datos, product.id, "add")
         })
-        
+
         document.getElementById(`${product.id}Delete`).addEventListener("click", () => {
             // Listener para eliminar el producto por completo
             handleButtonClick(datos, product.id, "delete")
@@ -78,25 +87,51 @@ function handleButtonClick(datos, productId, action) {
             }
         }
     } else if (action === "delete") {
-        // Eliminar el producto del carrito por completo
         cart = cart.filter(item => item.id !== productId)
+    } else if (action === "pay") {
+        // Vaciar el carrito y eliminarlo del almacenamiento
+        cart = []
+        localStorage.removeItem("cart")
+
+        // Eliminar todo el contenido del carrito de la UI
+        cartList.innerHTML = ""
+        cartTotal.innerHTML = ""
+
+        // Mostrar mensaje de compra realizada
+        messageCart.textContent = "Purchase made successfully!"
+        messageCart.classList.add("purchaseMade")
+
+        setTimeout(() => {
+            // Ocultar mensaje de compra realizada
+            messageCart.classList.remove("purchaseMade")
+            messageCart.classList.remove("hidden")
+            // Mostrar mensaje de carrito vacío
+            messageCart.textContent = "Cart empty"
+        }, 3000)
+
+        updateCartCount(cart)
+
+        return
     }
 
-    // Actualizar la cantidad en el DOM
-    let quantityElement = document.getElementById(`${productId}Quantity`);
-    if (quantityElement) {
-        quantityElement.textContent = productInCart ? productInCart.quantity : 0;
-    }
-
+    // Actualizar la interfaz si el usuario no ha realizado el pago
     showProductList(cart)
-    addListenerProducts(cart)    
+    addListenerProducts(cart)
     updateCart(cart)
     updateCartCount(cart)
-    updateCartTotal(cart)
-    showTotalCart(cart)
+
+    // Solo mostrar el total si el carrito tiene productos
+    if (cart.length > 0) {
+        showTotalCart(cart)
+    } else {
+        cartTotal.innerHTML = ""
+    }
 }
 
 function showTotalCart(cart) {
+    messageCart.classList.add("hidden")
+
+    updateCartCount(cart)
     let [subtotal, costs, total] = updateCartTotal(cart)
 
     let salida = ""
@@ -104,18 +139,25 @@ function showTotalCart(cart) {
     salida += `
         <div class="cart__price">
             <div class="cart__subtotal-info">
-                <p class="cart__subtotal-price">Subtotal: $${subtotal}</p>
-                <p class="cart__subtotal-costs">Shipping Costs: <span id="costs">${costs}</span></p>
+                <p class="cart__subtotal-price">Subtotal: <span id="subtotal">$${subtotal}</span></p>
+                <p class="cart__subtotal-costs">Shipping Costs: <span id="costs">$${costs}</span></p>
             </div>
             <div class="cart__total-divider"></div>
             <div class="cart__total">
-                <p class="cart__total-price">Total: $${total}</p>
+                <p class="cart__total-price">Total: <span id="total">$${total}</span></p>
             </div>
             <button id="cartPay" class="cart__btn-pay">Pay</button>
         </div>
     `
 
     cartTotal.innerHTML = salida
+
+    let payButton = document.getElementById("cartPay")
+    if (payButton) {
+        payButton.addEventListener("click", () => {
+            handleButtonClick(cart, null, "pay")
+        })
+    }
 }
 
 export function updateCartCount(cart) {
@@ -134,13 +176,14 @@ export function updateCartCount(cart) {
 
 export function updateCart(cart) {
     // console.log(cart)
-    localStorage.setItem("cart", JSON.stringify(cart)); // Guardar en localStorage
+    localStorage.setItem("cart", JSON.stringify(cart)) // Guardar en localStorage
     updateCartTotal(cart)
 }
 
 export function updateCartTotal(cart) {
     // Calcular el subtotal
     let subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
+    subtotal = parseFloat(subtotal.toFixed(2))
 
     let costs = 4.99
 
@@ -151,18 +194,19 @@ export function updateCartTotal(cart) {
 
     // Mostrar el total final
     let total = subtotal + (subtotal < 100 ? costs : 0) // Si el subtotal es menos de 100, agregamos los costos de envío
+    total = parseFloat(total.toFixed(2))
 
     return [subtotal, costs, total]
 }
 
 export function loadCart() {
     let cart = JSON.parse(localStorage.getItem("cart")) || []
-    let storedCart = localStorage.getItem("cart");
+    let storedCart = localStorage.getItem("cart")
     // console.log(JSON.parse(storedCart))
     if (storedCart) {
-        cart = JSON.parse(storedCart);
-        updateCart(cart);
-        updateCartCount(cart);
+        cart = JSON.parse(storedCart)
+        updateCart(cart)
+        updateCartCount(cart)
     }
     return cart
 }
