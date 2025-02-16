@@ -117,6 +117,7 @@ function handleCategoryViewer(categoryId) {
         .then(res => res.json())
         // .then(datos => { console.log(datos) })
         .then(datos => {
+            console.log(datos)
             fillProductsViewer(datos.products)
             addListenerProducts(datos.products)
         })
