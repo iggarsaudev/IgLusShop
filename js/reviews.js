@@ -23,6 +23,7 @@ function selectCategories() {
         option.classList.add("selectCategory__item")
         option.textContent = category.name
         selectCategory.appendChild(option)
+        mostrarAllReviews(category.slug)
     })
 
     
@@ -34,20 +35,32 @@ document.addEventListener('DOMContentLoaded',selectCategories)
 async function generarImagen(name) {
     let res = await fetch(`https://dummyjson.com/users/search?q=${name}`)
     let data = await res.json()
-    console.log(data.users[0])
     let gender = data.users[0].gender
 
     let resRandomUser = await fetch(`https://randomuser.me/api/?gender=${gender}`)
     let dataRandomUser = await resRandomUser.json()
-    console.log(dataRandomUser)
     let image = dataRandomUser.results[0].picture.large
 
    return image
 }
 
+function formatearFecha(fechaSinFormatear) {
+    let fecha = new Date(fechaSinFormatear);
 
+    let formato = fecha.toLocaleString("es-ES", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    timeZone: "Europe/Madrid"
+    });
 
-async function crearReview(review,title) {
+    return formato 
+}
+
+async function crearReview(review,title,img_product) {
     let rating = review.rating
     let star = ""
     let username = review.reviewerName
@@ -57,21 +70,21 @@ async function crearReview(review,title) {
         star
       </span>`
     }
-    console.log(username)
     let img = await generarImagen(firstName)
-    console.log(img)
     let reviewCard = `<div class="review">
-    <div class="review_left">
+    <div>
         <span class="review_name">${username}</span>
         <img class="review_img" src="${img}" alt="User image">
-        <div class="review_rate">
+        <div>
             ${star}
         </div>
      
     </div>
     <div class="review_right">
       <h2 class="review_product">${title}</h2>
-      <h3 class="review_date">${review.date}</h3>
+      <img class="review_img-product" src="${img_product}" alt="User image">
+
+      <h3 class="review_date">${formatearFecha(review.date)}</h3>
       <p class="review_comment">${review.comment}</p>
     </div>
 
@@ -79,31 +92,16 @@ async function crearReview(review,title) {
   </div>`
   return reviewCard
 }
-async function mostrarReview(product) {
-    console.log(product)
+async function mostrarReview(product) {   
     const divReviews = document.getElementById('reviewsContainer')
+    const img_product = product.images[0]
     const reviews = product.reviews
     const name = product.title
 
-//     comment
-//     : 
-//     "Not as described!"
-//     date
-//     : 
-//     "2024-05-23T08:56:21.627Z"
-//     rating
-//     : 
-//     1
-//     reviewerEmail
-//     : 
-//     "leah.hughes@x.dummyjson.com"
-//     reviewerName
-//     : 
-// "Leah Hughes"
     for (let i=0;i<reviews.length;i++) {
         let review = reviews[i]
 
-        let reviewCard = await crearReview(review,name)
+        let reviewCard = await crearReview(review,name,img_product)
         divReviews.innerHTML += reviewCard
     }
        
