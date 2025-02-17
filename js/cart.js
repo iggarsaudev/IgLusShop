@@ -17,7 +17,7 @@ if (cartList) {
 }
 
 function showProductList(cart) {
-    if (cart.length <= 0) {
+    if (cart.length === 0) {
         messageCart.classList.remove("hidden")
     }
     let salida = ""
@@ -25,7 +25,7 @@ function showProductList(cart) {
     cart.forEach(product => {
         salida += `
             <div class="cart__item">
-                <img src="${product.images[0]}" class="cart__item-img">
+                <img src="${product.images[0]}" class="cart__item-img" alt="${product.title}" aria-label="${product.title}">
                 <div class="cart__item-info">
                     <p class="cart__item-title">${product.title}</p>                    
                     <p class="cart__item-quantity">Quantity: <span id="${product.id}Quantity">${product.quantity}</span></p>
@@ -176,8 +176,16 @@ export function updateCartCount(cart) {
 
 export function updateCart(cart) {
     // console.log(cart)
-    localStorage.setItem("cart", JSON.stringify(cart)) // Guardar en localStorage
-    updateCartTotal(cart)
+    const filteredCart = cart.map(({ id, title, images, price, quantity }) => ({
+        id,
+        title,
+        images,
+        price,
+        quantity
+    }));
+
+    localStorage.setItem("cart", JSON.stringify(filteredCart)) // Guardar en localStorage
+    updateCartTotal(filteredCart)
 }
 
 export function updateCartTotal(cart) {

@@ -146,7 +146,7 @@
   color: black;
   border: none;
   border-radius: 0.5rem;
-  font-size: 16px;
+  font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -189,6 +189,7 @@
   border-radius: 0.3rem;
   display: inline-block;
   max-width: 100%;
+  text-align: center;
 }
 /* End Messages */
 
@@ -229,7 +230,7 @@
   .cart__total-subtotal,
   .cart__total-costs,
   .cart__total-price {
-    font-size: 14px;
+    font-size: 0.8rem;
   }
 }
 /* End Responsive */
