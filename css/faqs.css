@@ -1,0 +1,41 @@
+.faqs_container {
+    max-width: 50rem;
+    margin: 3rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.faqs-accordion{
+    margin-top: 2rem;
+    padding:5rem;
+    background-color:#ffdbbd;
+    border-radius:0.25rem;
+}
+
+.faqs_img{
+    width: 7rem;
+}
+
+/*Accordion*/
+.accordion{
+    --bs-accordion-border-color: #251100;
+}
+.accordion-button{
+    font-size: large;
+    background-color: #ffba81;
+    color:black;
+    font-size: 1.4rem;
+}
+
+.accordion-button:not(.collapsed){
+    color:black;
+    font-size: 1.7rem;
+    background-color: #f4a261;
+}
+
+.accordion-item {
+    border:1px solid #251100;
+    background-color: #fff6ee;
+    color:black
+
+}
