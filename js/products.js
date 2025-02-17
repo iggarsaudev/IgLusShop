@@ -163,6 +163,10 @@ function fillProductsViewer(datos) {
                     <button id="${product.id}Add" class="card__btn">
                         <span class="material-symbols-outlined">add</span>
                     </button>
+                </div>                
+                <div class="carousel__info">
+                    <a href="detailProduct.html?id=${product.id}" class="carousel__info-btn">More information</a>
+                    <a href="faq.html?id=${product.id}" class="carousel__info-btn">FAQ's</a>
                 </div>
             </div>
         `
