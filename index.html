@@ -31,27 +31,48 @@
       <nav id="nav" class="header__nav">
         <ul class="header__nav-list">
           <li class="header__nav-item">
-            <a href="index.html" id="menuHome" class="header__nav-link active">Home</a>
+            <a href="index.html" id="menuHome" class="header__nav-link active"
+              >Home</a
+            >
           </li>
 
           <li class="header__nav-item">
-            <a href="pages/products.html" id="menuProducts" class="header__nav-link">Products</a>
+            <a
+              href="pages/products.html"
+              id="menuProducts"
+              class="header__nav-link"
+              >Products</a
+            >
           </li>
 
           <li class="header__nav-item">
-            <a href="pages/faq.html" id="menuFaq" class="header__nav-link">Faq's</a>
+            <a href="pages/faq.html" id="menuFaq" class="header__nav-link"
+              >Faq's</a
+            >
           </li>
 
           <li class="header__nav-item">
-            <a href="pages/outlet.html" id="menuOutlet" class="header__nav-link">Outlet</a>
+            <a href="pages/outlet.html" id="menuOutlet" class="header__nav-link"
+              >Outlet</a
+            >
           </li>
 
           <li class="header__nav-item">
-            <a href="pages/contact.html" id="menuContact" class="header__nav-link">Contact</a>
+            <a
+              href="pages/contact.html"
+              id="menuContact"
+              class="header__nav-link"
+              >Contact</a
+            >
           </li>
 
           <li class="header__nav-item">
-            <a href="pages/reviews.html" id="menuReviews" class="header__nav-link">Reviews</a>
+            <a
+              href="pages/reviews.html"
+              id="menuReviews"
+              class="header__nav-link"
+              >Reviews</a
+            >
           </li>
         </ul>
       </nav>
@@ -59,7 +80,8 @@
       <div class="header__cart">
         <a href="pages/cart.html" class="header__cart-btn" id="cartBtn">
           <span class="material-symbols-outlined">shopping_cart</span>
-          <span id="cartCount" class="cart__count hidden"></span><!-- Contador de productos -->
+          <span id="cartCount" class="cart__count hidden"></span
+          ><!-- Contador de productos -->
         </a>
       </div>
 
@@ -78,36 +100,59 @@
     <main>
       <!--Description-->
       <section class="home-header bgc--black">
-          <h1 class="home-title color-primary">Your Online Shop for the Best Products</h1>
-          <h2 class="home-subtitle">Discover All Kinds of Products at IgLu's<span class="header__logo--highlight">Shop</span></h2>
+        <h1 class="home-title color-primary">
+          Your Online Shop for the Best Products
+        </h1>
+        <h2 class="home-subtitle">
+          Discover All Kinds of Products at IgLu's<span
+            class="header__logo--highlight"
+            >Shop</span
+          >
+        </h2>
       </section>
       <!--End Description-->
       <!--Carousel-->
       <section class="home-section">
         <div id="carouselHome-products" class="carousel slide">
           <h2>Products</h2>
-          <div id="carouselImages-products" class="carousel-inner">
-        
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselHome-products" data-bs-slide="prev">
+          <div id="carouselImages-products" class="carousel-inner"></div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselHome-products"
+            data-bs-slide="prev"
+          >
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
           </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselHome-products" data-bs-slide="next">
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselHome-products"
+            data-bs-slide="next"
+          >
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
           </button>
         </div>
         <div id="carouselHome-categories" class="carousel slide">
           <h2>Categories</h2>
-          <div id="carouselImages-categories" class="carousel-inner">
-        
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselHome-categories" data-bs-slide="prev">
+          <div id="carouselImages-categories" class="carousel-inner"></div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselHome-categories"
+            data-bs-slide="prev"
+          >
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
           </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselHome-categories" data-bs-slide="next">
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselHome-categories"
+            data-bs-slide="next"
+          >
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
           </button>
@@ -121,8 +166,13 @@
         IgLu's<span class="header__logo--highlight">Shop</span>
       </div>
       <div class="footer__links">
-        <a href="pages/legal.html" class="footer__link" target="_blank">Legal Notice</a> |
-        <a href="pages/cookies.html" class="footer__link" target="_blank">Cookies Policy</a>
+        <a href="pages/legal.html" class="footer__link" target="_blank"
+          >Legal Notice</a
+        >
+        |
+        <a href="pages/cookies.html" class="footer__link" target="_blank"
+          >Cookies Policy</a
+        >
       </div>
       <p class="footer__info">&copy; 2025 IgLu'S Shop. All rights reserved.</p>
     </footer>
@@ -137,7 +187,7 @@
     <!-- Controla el menú en los móviles -->
     <script src="js/toogler.js"></script>
     <!--Carousel dinamico-->
-    <script type="module"  src="js/home.js"></script>
+    <script type="module" src="js/home.js"></script>
     <!-- Controla la gestión del carrito, hay que añadir type="module" para poderlo importar -->
     <script type="module" src="js/cart.js"></script>
   </body>
