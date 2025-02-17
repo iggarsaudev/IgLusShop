@@ -90,3 +90,8 @@
   .card__btn .material-symbols-outlined {
     vertical-align: middle;
   }
+
+  .disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }

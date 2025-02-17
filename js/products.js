@@ -161,7 +161,7 @@ function fillProductsViewer(datos) {
                     <p class="product-price"><b>Precio:</b> $${product.price}</p>
                 </div>
                 <div class="card__buttons">
-                    <button id="${product.id}Remove" class="card__btn">
+                    <button id="${product.id}Remove" class="card__btn disabled">
                         <span class="material-symbols-outlined">remove</span>
                     </button>
                     <button id="${product.id}Add" class="card__btn">
@@ -206,13 +206,15 @@ function handleButtonClick(datos, productId, action) {
         } else {
             cart.push({ ...selectedProduct, quantity: 1 })
         }
+        document.getElementById(`${productId}Remove`).classList.remove("disabled") // Se habilita el botón en cuanto aparece en el carrito
     } else if (action === "remove") {
         if (productInCart && productInCart.quantity > 0) {
             productInCart.quantity -= 1
             if (productInCart.quantity === 0) {
                 cart = cart.filter(item => item.id !== productId)  // Eliminar si la cantidad es 0
+                document.getElementById(`${productId}Remove`).classList.add("disabled") // Si la cantidad es 0 se deshabilita el botón
             }
-        }
+        } 
     }
     // console.log(cart)
     updateCart(cart)

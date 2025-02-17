@@ -34,7 +34,7 @@ function showProductsDetail(datos) {
                         <p id="product-price" class="product-detail__price">$${datos.price}</p>
                     </div>
                     <div class="card__buttons">
-                        <button id="${datos.id}Remove" class="card__btn">
+                        <button id="${datos.id}Remove" class="card__btn disabled">
                             <span class="material-symbols-outlined">remove</span>
                         </button>
                         <button id="${datos.id}Add" class="card__btn">
