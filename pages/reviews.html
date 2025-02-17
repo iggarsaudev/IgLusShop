@@ -8,6 +8,8 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
     />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
     <!-- End Icons -->
     <!-- Bootstrap -->
     <link
@@ -18,6 +20,10 @@
     />
     <!-- End Bootstrap -->
     <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/products.css" />
+    <link rel="stylesheet" href="../css/review.css" />
+
+
     <title>IgLu's Shop</title>
   </head>
 
@@ -86,7 +92,12 @@
     </header>
 
     <main>
-      <p>REVIEWS.HTML</p>
+      <section id="productsContainer" class="container">
+        <div id="selectCategoryDiv" class="products__categories"></div>
+        <div id="reviewsContainer" class="products__reviews">
+
+        </div>
+      </section>    
     </main>
 
     <footer class="footer">
@@ -94,13 +105,8 @@
         IgLu's<span class="header__logo--highlight">Shop</span>
       </div>
       <div class="footer__links">
-        <a href="legal.html" class="footer__link" target="_blank"
-          >Legal Notice</a
-        >
-        |
-        <a href="cookies.html" class="footer__link" target="_blank"
-          >Cookies Policy</a
-        >
+        <a href="pages/legal.html" class="footer__link" target="_blank">Legal Notice</a> |
+        <a href="pages/cookies.html" class="footer__link" target="_blank">Cookies Policy</a>
       </div>
       <p class="footer__info">&copy; 2025 IgLu'S Shop. All rights reserved.</p>
     </footer>
@@ -115,6 +121,7 @@
     <!-- Controla el menú en los móviles -->
     <script src="../js/toogler.js"></script>
     <!-- Controla la gestión del carrito, hay que añadir type="module" para poderlo importar -->
-    <!-- <script type="module" src="js/cart.js"></script> -->
+    <script type="module" src="js/cart.js"></script>
+    <script type="module" src="../js/reviews.js"></script>
   </body>
 </html>
