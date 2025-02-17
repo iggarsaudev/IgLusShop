@@ -77,7 +77,9 @@ function showRandomProducts(datos) {
         </card>
     `
 
-    divProductsViewer.innerHTML = salida
+    if(divProductsViewer) {
+        divProductsViewer.innerHTML = salida
+    }
 }
 
 function fillSelectCategory(datos) {
@@ -105,7 +107,9 @@ function fillSelectCategory(datos) {
     })
 
     // Asignamos el select al contenedor
-    divSelectCategory.appendChild(selectCategory)
+    if (divSelectCategory) {
+        divSelectCategory.appendChild(selectCategory)
+    }
 
     // Agregamos los eventos seleccionando todos los elementos con la clase selectCategory__item
     selectCategory.addEventListener("change", function () {
@@ -123,7 +127,6 @@ function handleCategoryViewer(categoryId) {
             // .then(datos => { console.log(filteredProducts) })
             fillProductsViewer(filteredProducts)
             addListenerProducts(filteredProducts)
-
         })
         .catch(error => console.error("Error al obtener los productos para la categoría seleccionada:", error))
 }
@@ -158,12 +161,16 @@ function fillProductsViewer(datos) {
                     <p class="product-price"><b>Precio:</b> $${product.price}</p>
                 </div>
                 <div class="card__buttons">
-                    <button id="${product.id}Remove" class="card__btn">
+                    <button id="${product.id}Remove" class="card__btn disabled">
                         <span class="material-symbols-outlined">remove</span>
                     </button>
                     <button id="${product.id}Add" class="card__btn">
                         <span class="material-symbols-outlined">add</span>
                     </button>
+                </div>                
+                <div class="carousel__info">
+                    <a href="detailProduct.html?id=${product.id}" class="carousel__info-btn">More information</a>
+                    <a href="faq.html?id=${product.id}" class="carousel__info-btn">FAQ's</a>
                 </div>
             </div>
         `
@@ -172,7 +179,7 @@ function fillProductsViewer(datos) {
     divProductsViewer.innerHTML = salida
 }
 
-function addListenerProducts(datos) {
+export function addListenerProducts(datos) {
     // Asignar eventos a los botones dinámicamente
     datos.forEach(product => {
         document.getElementById(`${product.id}Remove`).addEventListener("click", () => {
@@ -199,13 +206,15 @@ function handleButtonClick(datos, productId, action) {
         } else {
             cart.push({ ...selectedProduct, quantity: 1 })
         }
+        document.getElementById(`${productId}Remove`).classList.remove("disabled") // Se habilita el botón en cuanto aparece en el carrito
     } else if (action === "remove") {
         if (productInCart && productInCart.quantity > 0) {
             productInCart.quantity -= 1
             if (productInCart.quantity === 0) {
                 cart = cart.filter(item => item.id !== productId)  // Eliminar si la cantidad es 0
+                document.getElementById(`${productId}Remove`).classList.add("disabled") // Si la cantidad es 0 se deshabilita el botón
             }
-        }
+        } 
     }
     // console.log(cart)
     updateCart(cart)
