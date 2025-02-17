@@ -123,6 +123,7 @@ function handleCategoryViewer(categoryId) {
             // .then(datos => { console.log(filteredProducts) })
             fillProductsViewer(filteredProducts)
             addListenerProducts(filteredProducts)
+
         })
         .catch(error => console.error("Error al obtener los productos para la categoría seleccionada:", error))
 }
