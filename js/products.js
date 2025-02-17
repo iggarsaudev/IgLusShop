@@ -1,14 +1,13 @@
 /* products.html */
-import { CATEGORIES } from './data.js'
+import { CATEGORIES,DISCOUNT } from './data.js'
 import { updateCart, updateCartCount, loadCart } from './cart.js'
 
 let divSelectCategory = document.getElementById("selectCategory")
 let divProductsViewer = document.getElementById("productsViewer")
 
-const DISCOUNT = 15
 
 let cart = loadCart() // Cargamos el carrito si lo hubiera
-fillSelectCategory(CATEGORIES) // Rellenamos el select de las categorías
+fillSelectCategory(CATEGORIES,handleCategoryViewer) // Rellenamos el select de las categorías
 getRandomProducts() // Mostramos un carrusel de productos aleatorios de las categorías seleccionadas en data.js
 
 /* Número aleatorio para mostrar dicha cantidad de productos, indicamos 45 porque son los productos que se obtienen con nuestras categorías */
@@ -82,7 +81,7 @@ function showRandomProducts(datos) {
     }
 }
 
-function fillSelectCategory(datos) {
+function fillSelectCategory(datos,callback) {
     // Creamos el elemento select
     let selectCategory = document.createElement("select")
     selectCategory.classList.add("selectCategory")
@@ -113,7 +112,7 @@ function fillSelectCategory(datos) {
 
     // Agregamos los eventos seleccionando todos los elementos con la clase selectCategory__item
     selectCategory.addEventListener("change", function () {
-        handleCategoryViewer(this.value)
+        callback(this.value)
     })
 }
 

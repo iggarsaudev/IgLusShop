@@ -1,3 +1,5 @@
+import { calculateDiscount } from './data.js'
+
 let cart = loadCart() // Cargamos el carrito si lo hubiera
 
 let cartList = document.getElementById("cartList")
@@ -16,6 +18,7 @@ if (cartList) {
     }
 }
 
+
 function showProductList(cart) {
     if (cart.length === 0) {
         messageCart.classList.remove("hidden")
@@ -23,13 +26,19 @@ function showProductList(cart) {
     let salida = ""
 
     cart.forEach(product => {
+        let price = product.price
+
+        if (product.discountPercentage>DISCOUNT) {
+           price =  calculateDiscount(product)           
+        }
+
         salida += `
             <div class="cart__item">
                 <img src="${product.images[0]}" class="cart__item-img" alt="${product.title}" aria-label="${product.title}">
                 <div class="cart__item-info">
                     <p class="cart__item-title">${product.title}</p>                    
                     <p class="cart__item-quantity">Quantity: <span id="${product.id}Quantity">${product.quantity}</span></p>
-                    <p class="cart__item-price">Price: $${product.price}</p>
+                    <p class="cart__item-price">Price: $${price}</p>
                 </div>
                 <div class="cart__buttons">
                     <button id="${product.id}Remove" class="cart__btn">
@@ -49,7 +58,7 @@ function showProductList(cart) {
     cartList.innerHTML = salida
 }
 
-function addListenerProducts(datos) {
+function addListenerProducts(datos,outlet) {
     // Asignar eventos a los botones dinámicamente
     datos.forEach(product => {
         document.getElementById(`${product.id}Remove`).addEventListener("click", () => {

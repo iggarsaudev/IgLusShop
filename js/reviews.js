@@ -1,36 +1,6 @@
 import { CATEGORIES } from './data.js'
 
-function selectCategories() {
-    const divSelectCategory = document.getElementById("selectCategoryDiv")
 
-    // Creamos el elemento select
-    let selectCategory = document.createElement("select")
-    selectCategory.classList.add("selectCategory")
-    selectCategory.name = "selectCategory"
-    selectCategory.id = "selectCategory"
-
-    // Creamos el primer option (selección por defecto)
-    let defaultOption = document.createElement("option")
-    defaultOption.value = ""
-    defaultOption.disabled = true
-    defaultOption.selected = true
-    defaultOption.textContent = "Selecciona la categoría del producto"
-    selectCategory.appendChild(defaultOption)
-
-    CATEGORIES.forEach(category => {
-        let option = document.createElement("option")
-        option.value = category.slug
-        option.classList.add("selectCategory__item")
-        option.textContent = category.name
-        selectCategory.appendChild(option)
-        mostrarAllReviews(category.slug)
-    })
-
-    
-    selectCategory.addEventListener('change',(e)=>{mostrarAllReviews(e.target.value)})
-    divSelectCategory.appendChild(selectCategory)
-}
-document.addEventListener('DOMContentLoaded',selectCategories)
 
 async function generarImagen(name) {
     let res = await fetch(`https://dummyjson.com/users/search?q=${name}`)
@@ -92,6 +62,7 @@ async function crearReview(review,title,img_product) {
   </div>`
   return reviewCard
 }
+
 async function mostrarReview(product) {   
     const divReviews = document.getElementById('reviewsContainer')
     const img_product = product.images[0]
@@ -106,6 +77,7 @@ async function mostrarReview(product) {
     }
        
 }
+
 function mostrarAllReviews(category) {
     const divReviews = document.getElementById('reviewsContainer')
 
@@ -116,3 +88,33 @@ function mostrarAllReviews(category) {
             res.products.forEach((product)=>{mostrarReview(product)})
         });
 }
+
+function selectCategories() {
+    const divSelectCategory = document.getElementById("selectCategoryDiv")
+    let selectCategory = document.createElement("select")
+    selectCategory.classList.add("selectCategory")
+    selectCategory.name = "selectCategory"
+    selectCategory.id = "selectCategory"
+
+    let defaultOption = document.createElement("option")
+    defaultOption.value = ""
+    defaultOption.disabled = true
+    defaultOption.selected = true
+    defaultOption.textContent = "Selecciona la categoría del producto"
+    selectCategory.appendChild(defaultOption)
+
+    mostrarAllReviews(CATEGORIES[0].slug)
+
+    CATEGORIES.forEach(category => {
+        let option = document.createElement("option")
+        option.value = category.slug
+        option.classList.add("selectCategory__item")
+        option.textContent = category.name
+        selectCategory.appendChild(option)
+    })
+
+    
+    selectCategory.addEventListener('change',(e)=>{mostrarAllReviews(e.target.value)})
+    divSelectCategory.appendChild(selectCategory)
+}
+document.addEventListener('DOMContentLoaded',selectCategories)
