@@ -1,3 +1,5 @@
+import { addListenerProducts } from './products.js'
+
 let detailsContainer = document.getElementById("detailsContainer")
 
 getProductDetails()
@@ -31,7 +33,18 @@ function showProductsDetail(datos) {
                         <p id="product-description" class="product-detail__description">${datos.description}</p>
                         <p id="product-price" class="product-detail__price">$${datos.price}</p>
                     </div>
+                    <div class="card__buttons">
+                        <button id="${datos.id}Remove" class="card__btn">
+                            <span class="material-symbols-outlined">remove</span>
+                        </button>
+                        <button id="${datos.id}Add" class="card__btn">
+                            <span class="material-symbols-outlined">add</span>
+                        </button>
+                        <a href="faq.html?id=${datos.id}" class="card__btn">FAQ's</a>
+                    </div>
                 </div>
             `
-    document.getElementById("detailsContainer").innerHTML = salida
+    detailsContainer.innerHTML = salida
+
+    addListenerProducts([datos])
 }

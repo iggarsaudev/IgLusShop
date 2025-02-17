@@ -77,7 +77,9 @@ function showRandomProducts(datos) {
         </card>
     `
 
-    divProductsViewer.innerHTML = salida
+    if(divProductsViewer) {
+        divProductsViewer.innerHTML = salida
+    }
 }
 
 function fillSelectCategory(datos) {
@@ -105,7 +107,9 @@ function fillSelectCategory(datos) {
     })
 
     // Asignamos el select al contenedor
-    divSelectCategory.appendChild(selectCategory)
+    if (divSelectCategory) {
+        divSelectCategory.appendChild(selectCategory)
+    }
 
     // Agregamos los eventos seleccionando todos los elementos con la clase selectCategory__item
     selectCategory.addEventListener("change", function () {
@@ -175,7 +179,7 @@ function fillProductsViewer(datos) {
     divProductsViewer.innerHTML = salida
 }
 
-function addListenerProducts(datos) {
+export function addListenerProducts(datos) {
     // Asignar eventos a los botones dinámicamente
     datos.forEach(product => {
         document.getElementById(`${product.id}Remove`).addEventListener("click", () => {
