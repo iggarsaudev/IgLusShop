@@ -2,8 +2,10 @@
 import { CATEGORIES } from './data.js'
 import { updateCart, updateCartCount, loadCart } from './cart.js'
 
-const divSelectCategory = document.getElementById("selectCategory")
-const divProductsViewer = document.getElementById("productsViewer")
+let divSelectCategory = document.getElementById("selectCategory")
+let divProductsViewer = document.getElementById("productsViewer")
+
+const DISCOUNT = 15
 
 let cart = loadCart() // Cargamos el carrito si lo hubiera
 fillSelectCategory(CATEGORIES) // Rellenamos el select de las categorías
@@ -51,7 +53,7 @@ function showRandomProducts(datos) {
         const activeClass = index === 0 ? 'active' : ''
         salida += `
                 <div class="carousel-item ${activeClass}">
-                    <img src="${product.images[0]}" class="d-block w-100 carousel__img" alt="${product.title}">
+                    <img src="${product.images[0]}" class="d-block w-100 carousel__img" alt="${product.title}" aria-label="${product.title}">
                     <div class="carousel__info">
                         <a href="detailProduct.html?id=${product.id}" class="carousel__info-btn">More information</a>
                     </div>
@@ -117,9 +119,11 @@ function handleCategoryViewer(categoryId) {
         .then(res => res.json())
         // .then(datos => { console.log(datos) })
         .then(datos => {
-            console.log(datos)
-            fillProductsViewer(datos.products)
-            addListenerProducts(datos.products)
+            let filteredProducts = datos.products.filter(product => product.discountPercentage < DISCOUNT)
+            // .then(datos => { console.log(filteredProducts) })
+            fillProductsViewer(filteredProducts)
+            addListenerProducts(filteredProducts)
+
         })
         .catch(error => console.error("Error al obtener los productos para la categoría seleccionada:", error))
 }
@@ -136,7 +140,7 @@ function fillProductsViewer(datos) {
                     <div class="carousel-inner">
                         ${imagenes.map((img, index) =>
             `<div class="carousel-item ${index === 0 ? 'active' : ''}">
-                                <img src="${img}" class="carousel__img d-block w-100" alt="${product.title}">
+                                <img src="${img}" class="carousel__img d-block w-100" alt="${product.title}" aria-label="${product.title}">
                             </div>`
         ).join("")}
                     </div>
@@ -182,8 +186,6 @@ function addListenerProducts(datos) {
         })
     })
 }
-
-// let cart = JSON.parse(localStorage.getItem("cart")) || [] // Si hay un carrito en localStorage se carga dicho carrito, si no se inicializa vacío
 
 function handleButtonClick(datos, productId, action) {
     // console.log(datos, productId, action)
