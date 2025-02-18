@@ -1,14 +1,13 @@
 /* products.html */
-import { CATEGORIES } from './data.js'
+import { CATEGORIES,DISCOUNT } from './data.js'
 import { updateCart, updateCartCount, loadCart } from './cart.js'
-
+import { addListenerProducts } from './general.js'
 let divSelectCategory = document.getElementById("selectCategory")
 let divProductsViewer = document.getElementById("productsViewer")
 
-const DISCOUNT = 15
 
 let cart = loadCart() // Cargamos el carrito si lo hubiera
-fillSelectCategory(CATEGORIES) // Rellenamos el select de las categorías
+fillSelectCategory(CATEGORIES,handleCategoryViewer) // Rellenamos el select de las categorías
 getRandomProducts() // Mostramos un carrusel de productos aleatorios de las categorías seleccionadas en data.js
 
 /* Número aleatorio para mostrar dicha cantidad de productos, indicamos 45 porque son los productos que se obtienen con nuestras categorías */
@@ -82,7 +81,7 @@ function showRandomProducts(datos) {
     }
 }
 
-function fillSelectCategory(datos) {
+function fillSelectCategory(datos,callback) {
     // Creamos el elemento select
     let selectCategory = document.createElement("select")
     selectCategory.classList.add("selectCategory")
@@ -113,7 +112,7 @@ function fillSelectCategory(datos) {
 
     // Agregamos los eventos seleccionando todos los elementos con la clase selectCategory__item
     selectCategory.addEventListener("change", function () {
-        handleCategoryViewer(this.value)
+        callback(this.value)
     })
 }
 
@@ -126,7 +125,7 @@ function handleCategoryViewer(categoryId) {
             let filteredProducts = datos.products.filter(product => product.discountPercentage < DISCOUNT)
             // .then(datos => { console.log(filteredProducts) })
             fillProductsViewer(filteredProducts)
-            addListenerProducts(filteredProducts)
+            addListenerProducts(filteredProducts,updateCart,updateCartCount,cart)
         })
         .catch(error => console.error("Error al obtener los productos para la categoría seleccionada:", error))
 }
@@ -178,46 +177,3 @@ function fillProductsViewer(datos) {
 
     divProductsViewer.innerHTML = salida
 }
-
-export function addListenerProducts(datos) {
-    // Asignar eventos a los botones dinámicamente
-    datos.forEach(product => {
-        document.getElementById(`${product.id}Remove`).addEventListener("click", () => {
-            // Listener para eliminar producto
-            handleButtonClick(datos, product.id, "remove")
-        })
-
-        document.getElementById(`${product.id}Add`).addEventListener("click", () => {
-            // Listener para añadir producto
-            handleButtonClick(datos, product.id, "add")
-        })
-    })
-}
-
-function handleButtonClick(datos, productId, action) {
-    // console.log(datos, productId, action)
-    let selectedProduct = datos.find(product => product.id === productId)
-    // console.log(selectedProduct, action)
-    let productInCart = cart.find(item => item.id === productId)
-
-    if (action === "add") {
-        if (productInCart) {
-            productInCart.quantity += 1
-        } else {
-            cart.push({ ...selectedProduct, quantity: 1 })
-        }
-        document.getElementById(`${productId}Remove`).classList.remove("disabled") // Se habilita el botón en cuanto aparece en el carrito
-    } else if (action === "remove") {
-        if (productInCart && productInCart.quantity > 0) {
-            productInCart.quantity -= 1
-            if (productInCart.quantity === 0) {
-                cart = cart.filter(item => item.id !== productId)  // Eliminar si la cantidad es 0
-                document.getElementById(`${productId}Remove`).classList.add("disabled") // Si la cantidad es 0 se deshabilita el botón
-            }
-        } 
-    }
-    // console.log(cart)
-    updateCart(cart)
-    updateCartCount(cart)
-}
-/* End Obtenemos las categorías, rellenamos el select y mostramos los productos para la categoría que se seleccione */

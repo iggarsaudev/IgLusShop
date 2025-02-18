@@ -10,3 +10,9 @@ export const CATEGORIES = [
     {slug: 'womens-shoes', name: 'Womens Shoes', url: 'https://dummyjson.com/products/category/womens-shoes'},
     {slug: 'laptops', name: 'Laptops', url: 'https://dummyjson.com/products/category/laptops'}
 ]
+
+export const DISCOUNT = 15
+
+export function calculateDiscount(product) {
+    return Math.round(Number(product.price)*(1-Number(product.discountPercentage)/100),2)
+}

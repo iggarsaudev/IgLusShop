@@ -1,7 +1,9 @@
-import { addListenerProducts } from './products.js'
+import { calculateDiscount,DISCOUNT } from './data.js'
+import { updateCart, updateCartCount, loadCart } from './cart.js'
+import { addListenerProducts } from './general.js'
 
 let detailsContainer = document.getElementById("detailsContainer")
-
+let cart = loadCart()
 getProductDetails()
 
 function recogerId() {
@@ -23,7 +25,11 @@ function showProductsDetail(datos) {
     for (let i = 0; i < Math.round(datos.rating); i++) {
         star += `<span class="material-symbols-outlined star">star</span>`
     }
+    let price = datos.price
 
+    if (Number(datos.discountPercentage)>DISCOUNT) {
+       price =  calculateDiscount(datos)           
+    }
     let salida = `
                 <div class="product-detail">
                     <img id="productImg" class="product-detail__image" src="${datos.images[0]}" alt="${datos.title}">            
@@ -31,7 +37,7 @@ function showProductsDetail(datos) {
                         <h2 id="product-title" class="product-detail__title">${datos.title}</h2>
                         <div class="product-detail__rating">${star}</div>
                         <p id="product-description" class="product-detail__description">${datos.description}</p>
-                        <p id="product-price" class="product-detail__price">$${datos.price}</p>
+                        <p id="product-price" class="product-detail__price">$${price}</p>
                     </div>
                     <div class="card__buttons">
                         <button id="${datos.id}Remove" class="card__btn disabled">
@@ -46,5 +52,5 @@ function showProductsDetail(datos) {
             `
     detailsContainer.innerHTML = salida
 
-    addListenerProducts([datos])
+    addListenerProducts([datos],updateCart,updateCartCount,cart)
 }
