@@ -1,8 +1,9 @@
 import { calculateDiscount,DISCOUNT } from './data.js'
-import { addListenerProducts } from './products.js'
+import { updateCart, updateCartCount, loadCart } from './cart.js'
+import { addListenerProducts } from './general.js'
 
 let detailsContainer = document.getElementById("detailsContainer")
-
+let cart = loadCart()
 getProductDetails()
 
 function recogerId() {
@@ -26,7 +27,7 @@ function showProductsDetail(datos) {
     }
     let price = datos.price
 
-    if (datos.discountPercentage>DISCOUNT) {
+    if (Number(datos.discountPercentage)>DISCOUNT) {
        price =  calculateDiscount(datos)           
     }
     let salida = `
@@ -51,5 +52,5 @@ function showProductsDetail(datos) {
             `
     detailsContainer.innerHTML = salida
 
-    addListenerProducts([datos])
+    addListenerProducts([datos],updateCart,updateCartCount,cart)
 }

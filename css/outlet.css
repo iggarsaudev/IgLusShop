@@ -32,6 +32,12 @@ font-size: larger;}
     transition: all 0.3s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
+
+.carousel__info-btn:hover {
+    background-color: #960000;
+    color:white;
+
+  }
 /* Botones carousel */
 .carousel-control-prev .material-symbols-outlined,
 .carousel-control-next .material-symbols-outlined {

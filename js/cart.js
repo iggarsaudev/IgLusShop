@@ -1,4 +1,4 @@
-import { calculateDiscount } from './data.js'
+import { calculateDiscount,DISCOUNT } from './data.js'
 
 let cart = loadCart() // Cargamos el carrito si lo hubiera
 
@@ -28,7 +28,7 @@ function showProductList(cart) {
     cart.forEach(product => {
         let price = product.price
 
-        if (product.discountPercentage>DISCOUNT) {
+        if (Number(product.discountPercentage)>DISCOUNT) {
            price =  calculateDiscount(product)           
         }
 
@@ -58,7 +58,7 @@ function showProductList(cart) {
     cartList.innerHTML = salida
 }
 
-function addListenerProducts(datos,outlet) {
+function addListenerProducts(datos) {
     // Asignar eventos a los botones dinámicamente
     datos.forEach(product => {
         document.getElementById(`${product.id}Remove`).addEventListener("click", () => {
@@ -184,22 +184,29 @@ export function updateCartCount(cart) {
 }
 
 export function updateCart(cart) {
-    // console.log(cart)
-    const filteredCart = cart.map(({ id, title, images, price, quantity }) => ({
+    const filteredCart = cart.map(({ id, title, images, price, quantity, discountPercentage }) => ({
         id,
         title,
         images,
         price,
-        quantity
+        quantity,
+        discountPercentage
     }));
 
     localStorage.setItem("cart", JSON.stringify(filteredCart)) // Guardar en localStorage
     updateCartTotal(filteredCart)
 }
 
+function calculateSubtotal(sum, item) {
+    let price = item.price
+    if (Number(item.discountPercentage)>DISCOUNT) {
+       price =  calculateDiscount(item)           
+    }
+    return sum + price * item.quantity
+}
 export function updateCartTotal(cart) {
     // Calcular el subtotal
-    let subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
+    let subtotal = cart.reduce((sum, item) => calculateSubtotal(sum, item), 0)
     subtotal = parseFloat(subtotal.toFixed(2))
 
     let costs = 4.99
