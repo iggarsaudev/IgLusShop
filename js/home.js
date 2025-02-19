@@ -1,5 +1,14 @@
 import { CATEGORIES } from './data.js'
+//Popup
+document.getElementById('close_popup').addEventListener('click',()=>{
+    document.getElementById('popup').style.display='none'
+})
 
+document.addEventListener('DOMContentLoaded',()=>{
+    document.getElementById('popup').style.display='flex'
+    setTimeout(()=>{document.getElementById('popup').style.display='none'},5000)
+
+})
 function getRandomInt(min, max) {
     const minCeiled = Math.ceil(min)
     const maxFloored = Math.floor(max)
@@ -34,6 +43,7 @@ function createCarouselImages() {
             })
     }
 }
+
 async function getImageCategory(url) {
     let img = await fetch(url)
         .then(res => res.json())
@@ -54,8 +64,9 @@ async function createCarouselCategory() {
         let categoryImg = await getImageCategory(categoryURL)
         if (i == 0) {
             childCarousel = `<div class="carousel-item active">
-            <h3>${categoryName}</h3>
             <img src="${categoryImg}" class="carousel-item-image" alt="${categoryName}">
+            <h3>${categoryName}</h3>
+
             </div>`
         }
         else {
