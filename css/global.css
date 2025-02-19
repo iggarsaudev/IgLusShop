@@ -7,6 +7,18 @@ body {
   background-color: #f8f9fa;
 }
 
+/* Global para controlar el footer */
+.global {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1;
+}
+/* End Global para controlar el footer */
+
 /* Header */
 .header {
   display: flex;
@@ -23,11 +35,11 @@ body {
 /* End Header */
 
 /*Colors*/
-.bgc--black{
+.bgc--black {
   background-color: #222;
 }
 
-.color-primary{
+.color-primary {
   color: #f4a261;
 }
 /* Logo */
@@ -59,7 +71,7 @@ body {
   transition: color 0.3s;
 }
 
-.header__nav-link.active{
+.header__nav-link.active {
   color: #f4a261;
 }
 
@@ -144,7 +156,7 @@ body {
   padding: 1rem 0;
   text-align: center;
   font-size: 0.9em;
-  width:100%;
+  width: 100%;
 }
 
 .footer__links {

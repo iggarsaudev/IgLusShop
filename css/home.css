@@ -1,27 +1,26 @@
-.home-header{
-    text-align:center;
-    padding:5rem;
+.home-header {
+  text-align: center;
+  padding: 5rem;
 }
-.home-section{
-    text-align:center;
-    margin:5rem;
+.home-section {
+  text-align: center;
+  margin: 5rem;
 }
-.home-title{
-    font-family:'PT Sans', Verdana, sans-serif;
-    font-size: 3rem;
-    font-weight: bold;
-    margin:1rem;
+.home-title {
+  font-family: "PT Sans", Verdana, sans-serif;
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 1rem;
 }
 
-.home-subtitle{
-    font-family:'PT Sans', Verdana, sans-serif;
-    font-size: 1rem;
-    color:white;
-    margin:1rem;
-
+.home-subtitle {
+  font-family: "PT Sans", Verdana, sans-serif;
+  font-size: 1rem;
+  color: white;
+  margin: 1rem;
 }
 
 /*Carousel*/
-.carousel-item-image{
-height:25rem;
+.carousel-item-image {
+  height: 25rem;
 }

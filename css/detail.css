@@ -1,97 +1,97 @@
 .details__container {
-    margin: 4rem;
-    display: block;
-    text-align: center;
-    width: 100%;
+  margin: 4rem;
+  display: block;
+  text-align: center;
+  width: 100%;
 }
 
 .product-detail {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 37rem;
-    margin: 0 auto;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 37rem;
+  margin: 0 auto;
 }
 
 .product-detail__image {
-    width: 12rem;
-    height: auto;
-    border-radius: 0.5rem;
-    display: block;
-    margin: 0 auto 1rem;
+  width: 12rem;
+  height: auto;
+  border-radius: 0.5rem;
+  display: block;
+  margin: 0 auto 1rem;
 }
 
 .product-detail__info {
-    text-align: left;
+  text-align: left;
 }
 
 .product-detail__title {
-    font-size: 1.5rem;
-    margin: 0;
+  font-size: 1.5rem;
+  margin: 0;
 }
 
 .product-detail__description {
-    font-size: 1rem;
-    color: #666;
+  font-size: 1rem;
+  color: #666;
 }
 
 .product-detail__price {
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: #f4a261;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #f4a261;
 }
 
 .product-detail__rating {
-    margin-top: 0.5rem;
-    color: #f4a261;
+  margin-top: 0.5rem;
+  color: #f4a261;
 }
 
 .card__buttons {
-    margin-top: auto;
-    display: flex;
-    gap: 0.3rem;
-    justify-content: center;
-  }
-  
-  /* Estilo de los botones */
-  .card__btn {
-    background-color: #f8b28b;
-    color: black;
-    border: none;
-    text-decoration: none;
-    border-radius: 0.5rem;
-    padding: 0.2rem 0.4rem;
-    font-size: 0.8rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Efecto al pasar el mouse */
-  .card__btn:hover {
-    background-color: #f4a261;
-    transform: translateY(-0.2rem);
-  }
-  
-  .card__btn:focus {
-    background-color: #f4a261;
-    transform: translateY(-0.2rem);
-  }
-  
-  /* Efecto al presionar */
-  .card__btn:active {
-    background-color: #d57e40;
-    transform: translateY(0.2rem);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* Iconos dentro de los botones */
-  .card__btn .material-symbols-outlined {
-    vertical-align: middle;
-  }
+  margin-top: auto;
+  display: flex;
+  gap: 0.3rem;
+  justify-content: center;
+}
 
-  .disabled {
-    opacity: 0.5;
-    pointer-events: none;
-  }
+/* Estilo de los botones */
+.card__btn {
+  background-color: #f8b28b;
+  color: black;
+  border: none;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  padding: 0.2rem 0.4rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Efecto al pasar el mouse */
+.card__btn:hover {
+  background-color: #f4a261;
+  transform: translateY(-0.2rem);
+}
+
+.card__btn:focus {
+  background-color: #f4a261;
+  transform: translateY(-0.2rem);
+}
+
+/* Efecto al presionar */
+.card__btn:active {
+  background-color: #d57e40;
+  transform: translateY(0.2rem);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Iconos dentro de los botones */
+.card__btn .material-symbols-outlined {
+  vertical-align: middle;
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}

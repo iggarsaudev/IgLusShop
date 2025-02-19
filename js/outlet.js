@@ -1,4 +1,4 @@
-import { CATEGORIES,calculateDiscount,DISCOUNT } from './data.js'
+import { CATEGORIES, calculateDiscount, DISCOUNT } from './data.js'
 import { updateCart, updateCartCount, loadCart } from './cart.js'
 import { addListenerProducts } from './general.js'
 
@@ -6,7 +6,7 @@ import { addListenerProducts } from './general.js'
 handleCategoryViewer()
 let cart = loadCart()
 
-function fillProductsViewerOutlet(datos)  {
+function fillProductsViewerOutlet(datos) {
     let divProductsViewer = document.getElementById("productsViewer")
     let salida = ""
     datos.forEach(product => {
@@ -60,16 +60,16 @@ function fillProductsViewerOutlet(datos)  {
 function handleCategoryViewer() {
     // console.log("Categoría seleccionada:", categoryId)
     fetch('https://dummyjson.com/products?limit=0')
-    .then(res => res.json())
-    .then(datos => {
-        // Filtrar productos por categoría
+        .then(res => res.json())
+        .then(datos => {
+            // Filtrar productos por categoría
             let filteredProducts = datos.products.filter(product =>
-            CATEGORIES.some(category => category.slug === product.category) 
-        )
+                CATEGORIES.some(category => category.slug === product.category)
+            )
             let filteredProductsDiscount = filteredProducts.filter(product => Number(product.discountPercentage) > DISCOUNT)
             // .then(datos => { console.log(filteredProducts) })
             fillProductsViewerOutlet(filteredProductsDiscount)
-            addListenerProducts(filteredProductsDiscount,updateCart,updateCartCount,cart)
+            addListenerProducts(filteredProductsDiscount, updateCart, updateCartCount, cart)
         })
         .catch(error => console.error("Error al obtener los productos para la categoría seleccionada:", error))
 }

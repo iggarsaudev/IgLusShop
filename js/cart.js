@@ -1,4 +1,4 @@
-import { calculateDiscount,DISCOUNT } from './data.js'
+import { calculateDiscount, DISCOUNT } from './data.js'
 
 let cart = loadCart() // Cargamos el carrito si lo hubiera
 
@@ -28,8 +28,8 @@ function showProductList(cart) {
     cart.forEach(product => {
         let price = product.price
 
-        if (Number(product.discountPercentage)>DISCOUNT) {
-           price =  calculateDiscount(product)           
+        if (Number(product.discountPercentage) > DISCOUNT) {
+            price = calculateDiscount(product)
         }
 
         salida += `
@@ -56,6 +56,8 @@ function showProductList(cart) {
     })
 
     cartList.innerHTML = salida
+
+    messageCart.textContent = cart.length === 0 ? "Cart empty" : "Cart"
 }
 
 function addListenerProducts(datos) {
@@ -129,6 +131,8 @@ function handleButtonClick(datos, productId, action) {
     updateCart(cart)
     updateCartCount(cart)
 
+    messageCart.textContent = cart.length === 0 ? "Cart empty" : "Cart"
+
     // Solo mostrar el total si el carrito tiene productos
     if (cart.length > 0) {
         showTotalCart(cart)
@@ -138,7 +142,8 @@ function handleButtonClick(datos, productId, action) {
 }
 
 function showTotalCart(cart) {
-    messageCart.classList.add("hidden")
+    // messageCart.classList.add("hidden")
+    messageCart.textContent = "Cart"
 
     updateCartCount(cart)
     let [subtotal, costs, total] = updateCartTotal(cart)
@@ -191,7 +196,7 @@ export function updateCart(cart) {
         price,
         quantity,
         discountPercentage
-    }));
+    }))
 
     localStorage.setItem("cart", JSON.stringify(filteredCart)) // Guardar en localStorage
     updateCartTotal(filteredCart)
@@ -199,8 +204,8 @@ export function updateCart(cart) {
 
 function calculateSubtotal(sum, item) {
     let price = item.price
-    if (Number(item.discountPercentage)>DISCOUNT) {
-       price =  calculateDiscount(item)           
+    if (Number(item.discountPercentage) > DISCOUNT) {
+        price = calculateDiscount(item)
     }
     return sum + price * item.quantity
 }

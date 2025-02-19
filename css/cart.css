@@ -176,9 +176,9 @@
 
 .messageCart {
   font-size: 4rem;
-  text-align: center;
   font-weight: bold;
-  margin: 4rem;
+  text-align: center;
+  margin-top: 2rem;
 }
 
 .purchaseMade {
@@ -190,6 +190,7 @@
   display: inline-block;
   max-width: 100%;
   text-align: center;
+  margin-left: 2rem;
 }
 /* End Messages */
 
@@ -219,7 +220,7 @@
   }
 
   .cart__total {
-    padding: 15px;
+    padding: 1rem;
   }
 
   .cart__subtotal-info {

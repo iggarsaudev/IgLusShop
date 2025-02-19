@@ -7,6 +7,13 @@
   padding: 0.6rem;
 }
 
+.title {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
 /* Select de las categorías */
 .products__categories {
   display: flex;
@@ -51,7 +58,7 @@
 .cardCarouselProducts {
   margin: 2rem auto;
   width: 90%;
-  height: 26rem;  
+  height: 26rem;
   text-align: center;
 }
 

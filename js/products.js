@@ -1,5 +1,4 @@
-/* products.html */
-import { CATEGORIES,DISCOUNT } from './data.js'
+import { CATEGORIES, DISCOUNT } from './data.js'
 import { updateCart, updateCartCount, loadCart } from './cart.js'
 import { addListenerProducts } from './general.js'
 let divSelectCategory = document.getElementById("selectCategory")
@@ -7,7 +6,7 @@ let divProductsViewer = document.getElementById("productsViewer")
 
 
 let cart = loadCart() // Cargamos el carrito si lo hubiera
-fillSelectCategory(CATEGORIES,handleCategoryViewer) // Rellenamos el select de las categorías
+fillSelectCategory(CATEGORIES, handleCategoryViewer) // Rellenamos el select de las categorías
 getRandomProducts() // Mostramos un carrusel de productos aleatorios de las categorías seleccionadas en data.js
 
 /* Número aleatorio para mostrar dicha cantidad de productos, indicamos 45 porque son los productos que se obtienen con nuestras categorías */
@@ -76,12 +75,12 @@ function showRandomProducts(datos) {
         </card>
     `
 
-    if(divProductsViewer) {
+    if (divProductsViewer) {
         divProductsViewer.innerHTML = salida
     }
 }
 
-function fillSelectCategory(datos,callback) {
+function fillSelectCategory(datos, callback) {
     // Creamos el elemento select
     let selectCategory = document.createElement("select")
     selectCategory.classList.add("selectCategory")
@@ -125,7 +124,7 @@ function handleCategoryViewer(categoryId) {
             let filteredProducts = datos.products.filter(product => product.discountPercentage < DISCOUNT)
             // .then(datos => { console.log(filteredProducts) })
             fillProductsViewer(filteredProducts)
-            addListenerProducts(filteredProducts,updateCart,updateCartCount,cart)
+            addListenerProducts(filteredProducts, updateCart, updateCartCount, cart)
         })
         .catch(error => console.error("Error al obtener los productos para la categoría seleccionada:", error))
 }

@@ -1,43 +1,44 @@
-.outletContainer{
-    margin:5rem auto;
-    width:50rem;
-
+.outletContainer {
+  margin: 5rem auto;
+  width: 50rem;
 }
 
-.products__viewer{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+.products__viewer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
 }
 
-.product-price-before{
-    color: rgb(151, 151, 151);
-    text-decoration: line-through;
-    font-size: small;}
+.product-price-before {
+  color: rgb(151, 151, 151);
+  text-decoration: line-through;
+  font-size: small;
+}
 
-.product-price-now{color: red;
-    text-decoration: blink;
-font-size: larger;}
+.product-price-now {
+  color: red;
+  text-decoration: blink;
+  font-size: larger;
+}
 
 /* Se copian estilos de product para ponerlo todo en rojo */
 .carousel__info-btn {
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-    background-color: #f34b4b;
-    color: black;
-    text-decoration: none;
-    border-radius: 0.5rem;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  background-color: #f34b4b;
+  color: black;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
 .carousel__info-btn:hover {
-    background-color: #960000;
-    color:white;
-
-  }
+  background-color: #960000;
+  color: white;
+}
 /* Botones carousel */
 .carousel-control-prev .material-symbols-outlined,
 .carousel-control-next .material-symbols-outlined {

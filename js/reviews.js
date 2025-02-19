@@ -1,7 +1,5 @@
 import { CATEGORIES } from './data.js'
 
-
-
 async function generarImagen(name) {
     let res = await fetch(`https://dummyjson.com/users/search?q=${name}`)
     let data = await res.json()
@@ -11,32 +9,32 @@ async function generarImagen(name) {
     let dataRandomUser = await resRandomUser.json()
     let image = dataRandomUser.results[0].picture.large
 
-   return image
+    return image
 }
 
 function formatearFecha(fechaSinFormatear) {
-    let fecha = new Date(fechaSinFormatear);
+    let fecha = new Date(fechaSinFormatear)
 
     let formato = fecha.toLocaleString("es-ES", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    timeZone: "Europe/Madrid"
-    });
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        timeZone: "Europe/Madrid"
+    })
 
-    return formato 
+    return formato
 }
 
-async function crearReview(review,title,img_product) {
+async function crearReview(review, title, img_product) {
     let rating = review.rating
     let star = ""
     let username = review.reviewerName
     let firstName = username.split(" ")[0]
-    for (let i=0;i<rating;i++) {
-        star+=`<span class="material-icons">
+    for (let i = 0; i < rating; i++) {
+        star += `<span class="material-icons">
         star
       </span>`
     }
@@ -60,22 +58,22 @@ async function crearReview(review,title,img_product) {
 
 
   </div>`
-  return reviewCard
+    return reviewCard
 }
 
-async function mostrarReview(product) {   
+async function mostrarReview(product) {
     const divReviews = document.getElementById('reviewsContainer')
     const img_product = product.images[0]
     const reviews = product.reviews
     const name = product.title
 
-    for (let i=0;i<reviews.length;i++) {
+    for (let i = 0; i < reviews.length; i++) {
         let review = reviews[i]
 
-        let reviewCard = await crearReview(review,name,img_product)
+        let reviewCard = await crearReview(review, name, img_product)
         divReviews.innerHTML += reviewCard
     }
-       
+
 }
 
 function mostrarAllReviews(category) {
@@ -85,8 +83,8 @@ function mostrarAllReviews(category) {
     fetch(`https://dummyjson.com/products/category/${category}`)
         .then(res => res.json())
         .then(res => {
-            res.products.forEach((product)=>{mostrarReview(product)})
-        });
+            res.products.forEach((product) => { mostrarReview(product) })
+        })
 }
 
 function selectCategories() {
@@ -113,8 +111,8 @@ function selectCategories() {
         selectCategory.appendChild(option)
     })
 
-    
-    selectCategory.addEventListener('change',(e)=>{mostrarAllReviews(e.target.value)})
+
+    selectCategory.addEventListener('change', (e) => { mostrarAllReviews(e.target.value) })
     divSelectCategory.appendChild(selectCategory)
 }
-document.addEventListener('DOMContentLoaded',selectCategories)
+document.addEventListener('DOMContentLoaded', selectCategories)
