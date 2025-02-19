@@ -4,7 +4,17 @@
 }
 .home-section {
   text-align: center;
-  margin: 5rem;
+  max-width:75rem;
+  margin:5rem auto;
+}
+@media (max-width: 768px) {
+  .home-section {
+    width: 100%;
+  }
+
+}
+.home-section-carousel{
+padding:3rem;
 }
 .home-title {
   font-family: "PT Sans", Verdana, sans-serif;
@@ -21,6 +31,12 @@
 }
 
 /*Carousel*/
+.carousel-control-prev-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 16 16'%3E%3Cpath d='M11.354 1.146a.5.5 0 0 1 0 .708L5.707 8l5.647 6.146a.5.5 0 0 1-.708.708l-6-6.5a.5.5 0 0 1 0-.708l6-6.5a.5.5 0 0 1 .708 0z'/%3E%3C/svg%3E");
+}
+.carousel-control-next-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 16 16'%3E%3Cpath d='M4.646 1.146a.5.5 0 0 1 .708 0l6 6.5a.5.5 0 0 1 0 .708l-6 6.5a.5.5 0 0 1-.708-.708L10.293 8 4.646 1.854a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+}
 .carousel-item-image {
   height: 25rem;
 }

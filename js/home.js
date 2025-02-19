@@ -54,8 +54,9 @@ async function createCarouselCategory() {
         let categoryImg = await getImageCategory(categoryURL)
         if (i == 0) {
             childCarousel = `<div class="carousel-item active">
-            <h3>${categoryName}</h3>
             <img src="${categoryImg}" class="carousel-item-image" alt="${categoryName}">
+            <h3>${categoryName}</h3>
+
             </div>`
         }
         else {
