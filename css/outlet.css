@@ -98,3 +98,22 @@
   opacity: 0.5;
   pointer-events: none;
 }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .outletContainer {
+    width: 100%;
+    padding: 0 1rem;
+  }
+
+  .products__viewer {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .carousel__info-btn {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+/* End Responsive */
